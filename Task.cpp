@@ -5,8 +5,8 @@
 #include <fstream>
 #include <algorithm>
 
-void saveTask(const std::vector<Task>& tasks, const std::string& file){
-    std::ofstream ostream(file);
+void saveTasks(const std::vector<Task>& tasks, const std::string& fileName){
+    std::ofstream ostream(fileName);
     ostream << tasks.size();
 
     for(const Task& task : tasks){
@@ -17,12 +17,12 @@ void saveTask(const std::vector<Task>& tasks, const std::string& file){
     }
 }
 
-std::vector<Task> loadTask(const std::string& file){
-    if(!std::filesystem::exists(file)){
+std::vector<Task> loadTask(const std::string& fileName){
+    if(!std::filesystem::exists(fileName)){
         return std::vector<Task>();
     }
     std::vector<Task> tasks;
-    std::ifstream(file);
+    std::ifstream istream(fileName);
 
     int n;
     istream >> n;
@@ -31,7 +31,7 @@ std::vector<Task> loadTask(const std::string& file){
         std::string description;
         bool completed;
 
-        istream >> description >> done;
+        istream >> description >> completed;
         std::replace(description.begin(), description.end(), '_', ' ');
         tasks.push_back(Task{ description, completed });
     }

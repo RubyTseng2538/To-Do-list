@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <vector>
 
@@ -6,5 +7,5 @@ struct Task{
     bool completed;
 };
 
-void saveTasks(const std::vector<Task>&, const std::string& file);
-std::vector<Task> loadTask(const std::string& file);
+void saveTasks(const std::vector<Task>&, const std::string& fileName);
+std::vector<Task> loadTask(const std::string& fileName);
